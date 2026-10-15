@@ -12,7 +12,7 @@ Uso o algoritmo de clustering **K-Means** para segmentar 200 clientes de um shop
 
 ## Dataset
 
-[Mall Customers](data/Mall_Customers.csv): 200 clientes, 5 atributos. Dataset **fornecido pelo professor** do curso Profissão Cientista de Dados como material do projeto do Módulo 33 (é a mesma base pública [Mall Customer Segmentation Data](https://www.kaggle.com/datasets/vjchoudhary7/customer-segmentation-tutorial-in-python), do Kaggle).
+[Mall Customers](data/Mall_Customers.csv): 200 clientes, 5 atributos. Dataset **fornecido pelo professor** do curso Profissão Cientista de Dados como material do projeto do Módulo 33 (base também disponível publicamente como [Mall Customer Segmentation Data](https://www.kaggle.com/datasets/vjchoudhary7/customer-segmentation-tutorial-in-python), do Kaggle).
 
 | Coluna | Descrição |
 |---|---|
