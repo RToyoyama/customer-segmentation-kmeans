@@ -4,6 +4,8 @@ Projeto final do **Módulo 33 — Modelos Avançados** do curso **Profissão Cie
 
 Uso o algoritmo de clustering **K-Means** para segmentar 200 clientes de um shopping com base em idade, renda anual e *Spending Score*. Depois interpreto os grupos e sugiro estratégias de negócio para cada um.
 
+▶️ **Como rodar:** veja a seção [Como rodar](#como-rodar) (Docker, uv ou pip).
+
 📓 **Notebook completo (executado):** [`notebooks/segmentacao_clientes_kmeans.ipynb`](notebooks/segmentacao_clientes_kmeans.ipynb)
 
 ---
@@ -83,22 +85,39 @@ O **cenário A** foi escolhido como segmentação principal: as métricas são a
 └── README.md
 ```
 
-## Como reproduzir
+## Como rodar
 
-### Opção 1: Docker (qualquer computador)
+Escolha **uma** das opções abaixo.
 
-Só precisa do [Docker](https://docs.docker.com/get-docker/) instalado.
+### Opção 0: só visualizar (sem instalar nada)
 
-```bash
-git clone https://github.com/RToyoyama/customer-segmentation-kmeans.git
-cd customer-segmentation-kmeans
-docker build -t segmentacao-kmeans .
-docker run --rm -p 127.0.0.1:8888:8888 segmentacao-kmeans
-```
+O notebook já está salvo com todos os resultados. Basta abrir
+[`notebooks/segmentacao_clientes_kmeans.ipynb`](notebooks/segmentacao_clientes_kmeans.ipynb) aqui no GitHub.
 
-Depois é só abrir **http://localhost:8888**. O JupyterLab já abre no notebook do projeto.
+### Opção 1: Docker (recomendado, funciona em qualquer computador)
 
-Para reexecutar o notebook inteiro sem abrir o navegador:
+**Pré-requisitos:** [Git](https://git-scm.com/downloads) e [Docker](https://docs.docker.com/get-docker/) instalados (no Windows/Mac, o Docker Desktop precisa estar aberto).
+
+1. Baixe o projeto:
+   ```bash
+   git clone https://github.com/RToyoyama/customer-segmentation-kmeans.git
+   cd customer-segmentation-kmeans
+   ```
+2. Construa a imagem (só na primeira vez; demora alguns minutos):
+   ```bash
+   docker build -t segmentacao-kmeans .
+   ```
+3. Inicie o container:
+   ```bash
+   docker run --rm -p 127.0.0.1:8888:8888 segmentacao-kmeans
+   ```
+4. Abra **http://localhost:8888** no navegador. O JupyterLab abre direto no notebook.
+5. Para rodar tudo, use o menu **Run → Run All Cells**.
+6. Para encerrar, aperte `Ctrl + C` no terminal.
+
+> O Jupyter roda sem senha para facilitar o acesso local. Por isso a porta é liberada só em `127.0.0.1`, e o notebook não fica acessível para outras máquinas da rede.
+
+**Executar o notebook sem abrir o navegador** (útil para conferir se tudo roda do início ao fim):
 
 ```bash
 docker run --rm segmentacao-kmeans \
@@ -106,17 +125,29 @@ docker run --rm segmentacao-kmeans \
   && echo "Notebook executado com sucesso"
 ```
 
-> O Jupyter roda sem token para facilitar o acesso local. Por isso a porta é publicada só em `127.0.0.1`, e não fica acessível de outras máquinas da rede.
+### Opção 2: uv (Python local)
 
-### Opção 2: uv (local)
-
-Requer [uv](https://docs.astral.sh/uv/) e Python 3.13.
+**Pré-requisitos:** [Git](https://git-scm.com/downloads) e [uv](https://docs.astral.sh/uv/getting-started/installation/). O uv instala o Python 3.13 automaticamente.
 
 ```bash
 git clone https://github.com/RToyoyama/customer-segmentation-kmeans.git
 cd customer-segmentation-kmeans
 uv sync
 uv run jupyter lab notebooks/segmentacao_clientes_kmeans.ipynb
+```
+
+### Opção 3: pip (Python local)
+
+**Pré-requisito:** Python 3.13 ou mais recente.
+
+```bash
+git clone https://github.com/RToyoyama/customer-segmentation-kmeans.git
+cd customer-segmentation-kmeans
+python -m venv .venv
+# Linux/Mac: source .venv/bin/activate
+# Windows:   .venv\Scripts\activate
+pip install pandas numpy matplotlib seaborn scikit-learn jupyterlab
+jupyter lab notebooks/segmentacao_clientes_kmeans.ipynb
 ```
 
 **Stack:** pandas, numpy, matplotlib, seaborn, scikit-learn, Jupyter.
