@@ -78,11 +78,37 @@ O **cenário A** foi escolhido como segmentação principal: as métricas são a
 ├── data/Mall_Customers.csv
 ├── notebooks/segmentacao_clientes_kmeans.ipynb
 ├── reports/figures/          # gráficos exportados pelo notebook
+├── Dockerfile / .dockerignore
 ├── pyproject.toml / uv.lock
 └── README.md
 ```
 
 ## Como reproduzir
+
+### Opção 1: Docker (qualquer computador)
+
+Só precisa do [Docker](https://docs.docker.com/get-docker/) instalado.
+
+```bash
+git clone https://github.com/RToyoyama/customer-segmentation-kmeans.git
+cd customer-segmentation-kmeans
+docker build -t segmentacao-kmeans .
+docker run --rm -p 127.0.0.1:8888:8888 segmentacao-kmeans
+```
+
+Depois é só abrir **http://localhost:8888**. O JupyterLab já abre no notebook do projeto.
+
+Para reexecutar o notebook inteiro sem abrir o navegador:
+
+```bash
+docker run --rm segmentacao-kmeans \
+  jupyter nbconvert --execute --to notebook --stdout notebooks/segmentacao_clientes_kmeans.ipynb > /dev/null \
+  && echo "Notebook executado com sucesso"
+```
+
+> O Jupyter roda sem token para facilitar o acesso local. Por isso a porta é publicada só em `127.0.0.1`, e não fica acessível de outras máquinas da rede.
+
+### Opção 2: uv (local)
 
 Requer [uv](https://docs.astral.sh/uv/) e Python 3.13.
 
