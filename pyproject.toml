@@ -1,0 +1,23 @@
+[project]
+name = "customer-segmentation-kmeans"
+version = "0.1.0"
+description = "Segmentação de clientes com K-Means — Projeto final Módulo 33 (Profissão Cientista de Dados)"
+readme = "README.md"
+requires-python = ">=3.13"
+license = "MIT"
+authors = [{ name = "Renan Toyoyama" }]
+
+dependencies = [
+    "pandas",
+    "numpy",
+    "matplotlib",
+    "seaborn",
+    "scikit-learn",
+]
+
+[dependency-groups]
+dev = [
+    "jupyterlab",
+    "ipykernel",
+    "nbconvert",
+]
